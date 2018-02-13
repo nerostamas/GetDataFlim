@@ -36,6 +36,9 @@ class Movie:
         synopsis = soup.find(itemprop="description")
         self.Synopsis = re.sub(' +', ' ', synopsis.get_text().strip())
 
+        img = soup.find('div','poster').find("img",{"itemprop":"image" })['src']
+        self.MovieImg = img
+
         directors = soup.find_all(itemprop="director")
         self.Directors = []
         for director in directors:
@@ -44,9 +47,10 @@ class Movie:
         actors = soup.find('table', 'cast_list').find_all("span", "itemprop")
         characters = soup.find('table', 'cast_list').find_all("td", "character")
 
+        self.Genres = []
         genres = soup.find('div',{"id":"titleStoryLine"}).find("div", {"itemprop":"genre"}).findAll("a",attrs={'class': None})
         for gen in genres:
-            print gen.string
+            self.Genres.append(str(gen.string))
 
         self.Actors = {}
         for i in range(len(actors)):
