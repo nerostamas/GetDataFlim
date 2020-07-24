@@ -634,7 +634,7 @@ class SqlSoup(object):
                     schema=None, base=None, mapper_args=util.immutabledict()):
         """Configure a mapping to the given attrname.
 
-        This is the "master" method that can be used to create any
+        This is the "main" method that can be used to create any
         configuration.
 
         .. versionadded:: 0.6.6
